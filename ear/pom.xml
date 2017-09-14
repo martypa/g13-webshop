@@ -54,18 +54,18 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>prod</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <my-tomeeHost>enapp-was113.el.eee.intern</my-tomeeHost>
+                <my-tomeeHost>192.168.221.128</my-tomeeHost>
             </properties>
         </profile>
         <profile>
-            <id>prod</id>
+            <id>dev</id>
             <properties>
-                <my-tomeeHost>enapp-was113.el.eee.intern</my-tomeeHost>
+                <my-tomeeHost>192.168.221.128</my-tomeeHost>
             </properties>
         </profile>
     </profiles>
@@ -95,16 +95,6 @@
                             <artifactId>web</artifactId>
                             <contextRoot>/enapp</contextRoot>
                         </webModule>
-                        <webModule>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>rest</artifactId>
-                            <contextRoot>/enapprest</contextRoot>
-                        </webModule>
-                        <webModule>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>soap</artifactId>
-                            <contextRoot>/enappsoap</contextRoot>
-                        </webModule>
                     </modules>
                     <generateApplicationXml>true</generateApplicationXml>
                 </configuration>
@@ -112,7 +102,7 @@
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>7.1.1</version>
+                <version>7.0.3</version>
                 <configuration>
                     <context>${project.artifactId}</context>
                     <tomeeClassifier>plus</tomeeClassifier>

@@ -52,14 +52,11 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-.idea/compiler.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/codeStyleSettings.xml
-.idea/inspectionProfiles/
-.idea/**/artifacts
+### Intellij+all Patch ###
+# Ignores the whole idea folder
+# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
+
+.idea/
 
 ### Maven ###
 target/
