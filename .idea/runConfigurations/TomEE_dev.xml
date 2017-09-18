@@ -2,6 +2,7 @@
   <configuration default="false" name="TomEE dev" type="TomeeConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="TomEE PluME 7.0.3" ALTERNATIVE_JRE_ENABLED="false">
     <option name="HOST" value="192.168.221.133" />
     <option name="LOCAL" value="false" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://192.168.221.133:8080/enapp" />
     <deployment />
     <server-settings>
       <data>
@@ -45,7 +46,7 @@
             </StagingTargetModelImpl>
           </list>
         </option>
-        <option name="transportHostId" value="" />
+        <option name="transportHostId" />
         <host-id />
       </data>
     </server-settings>
