@@ -1,8 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TomEE dev" type="TomeeConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="TomEE 7.1.1 local" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="HOST" value="localtomee" />
+  <configuration default="false" name="TomEE dev" type="TomeeConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="TomEE PluME 7.0.3" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="HOST" value="192.168.221.133" />
     <option name="LOCAL" value="false" />
-    <option name="OPEN_IN_BROWSER_URL" value="http://localtomee:8080/enapp" />
     <deployment />
     <server-settings>
       <data>
@@ -47,15 +46,17 @@
           </list>
         </option>
         <option name="transportHostId" />
+        <host-id />
       </data>
     </server-settings>
-    <predefined_log_file enabled="true" id="Tomcat" />
-    <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+    <predefined_log_file id="Tomcat" enabled="true" />
+    <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     <RunnerSettings RunnerId="Debug">
-      <option name="DEBUG_PORT" value="8000" />
+      <option name="DEBUG_PORT" value="34532" />
       <option name="LOCAL" value="false" />
     </RunnerSettings>
-    <method v="2">
+    <method>
+      <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="install" />
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="undeploy dev" run_configuration_type="MavenRunConfiguration" />
