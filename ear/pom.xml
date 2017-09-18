@@ -103,7 +103,7 @@
                         <webModule>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>soap</artifactId>
-                            <contextRoot>/soap</contextRoot>
+                            <contextRoot>/enappsoap</contextRoot>
                         </webModule>
                     </modules>
                     <generateApplicationXml>true</generateApplicationXml>
