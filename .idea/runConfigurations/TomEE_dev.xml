@@ -45,7 +45,7 @@
             </StagingTargetModelImpl>
           </list>
         </option>
-        <option name="transportHostId" />
+        <option name="transportHostId" value="" />
         <host-id />
       </data>
     </server-settings>
@@ -59,8 +59,6 @@
       <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="install" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="undeploy dev" run_configuration_type="MavenRunConfiguration" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="deploy dev" run_configuration_type="MavenRunConfiguration" />
     </method>
   </configuration>
 </component>
