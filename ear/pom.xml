@@ -95,6 +95,16 @@
                             <artifactId>web</artifactId>
                             <contextRoot>/enapp</contextRoot>
                         </webModule>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>rest</artifactId>
+                            <contextRoot>/enapprest</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>soap</artifactId>
+                            <contextRoot>/soap</contextRoot>
+                        </webModule>
                     </modules>
                     <generateApplicationXml>true</generateApplicationXml>
                 </configuration>
