@@ -57,6 +57,8 @@ fabric.properties
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+.idea/codeStyleSettings.xml
+.idea/inspectionProfiles/
 .idea/**/artifacts
 
 ### Maven ###
