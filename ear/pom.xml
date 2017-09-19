@@ -54,18 +54,18 @@
 
     <profiles>
         <profile>
-            <id>prod</id>
+            <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <my-tomeeHost>192.168.221.128</my-tomeeHost>
+                <my-tomeeHost>localtomee</my-tomeeHost>
             </properties>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>prod</id>
             <properties>
-                <my-tomeeHost>192.168.221.128</my-tomeeHost>
+                <my-tomeeHost>0.0.0.0</my-tomeeHost>
             </properties>
         </profile>
     </profiles>
