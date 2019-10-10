@@ -1,0 +1,41 @@
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+
+cache:
+  paths:
+    - .m2/repository
+
+stages:
+  - build
+  - deploy
+
+maven-build:
+  only:
+    - master
+  image: maven:3-jdk-8-alpine
+  stage: build
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_JOB_ID-build-artifact"
+    expire_in: 10 mins
+    paths:
+      - ear/target/ear-1.0-SNAPSHOT.ear
+  script:
+    - pwd
+    - ls -la
+    - mvn $MAVEN_CLI_OPTS install
+    - ls -la ear/target/*ear
+
+maven-deploy:
+  only:
+    - master
+  image: maven:3-jdk-8-alpine
+  stage: deploy
+  script:
+    - pwd
+    - ls -la
+    - ls -la ear/target/*ear
+    - mvn $MAVEN_CLI_OPTS -P prod -pl ear tomee:undeploy@undeploy-it
+    - mvn $MAVEN_CLI_OPTS -P prod -pl ear tomee:deploy@deploy-it
+
+
