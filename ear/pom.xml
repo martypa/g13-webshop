@@ -59,13 +59,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <my-tomeeHost>localtomee</my-tomeeHost>
+                <my-tomeeHost>tomee</my-tomeeHost>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <my-tomeeHost>0.0.0.0</my-tomeeHost>
+                <my-tomeeHost>tomee</my-tomeeHost>
             </properties>
         </profile>
     </profiles>

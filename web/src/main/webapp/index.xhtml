@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/templates/template.xhtml">
+    <ui:define name="content">
+        <div class="kachel-rock">
+            <h3>Rock</h3>
+            <h:dataTable styleClass="order-table" id="rockProductTable" var="singleRockProduct"
+                         value="#{productJSF.getRockProducts()}">
+                <h:column>
+                    <h:outputText value="#{singleRockProduct.name}: "/>
+                    <h:outputText value="#{singleRockProduct.description}"/>
+                    <h:outputText value="#{singleRockProduct.unitprice}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+        <div class="kachel-Pop">
+            <h3>Pop</h3>
+            <h:dataTable id="PopProductTable" var="singlePopProduct"
+                         value="#{productJSF.getPopProducts()}">
+                <h:column>
+                    <h:outputText value="#{singlePopProduct.name}: "/>
+                    <h:outputText value="#{singlePopProduct.description}"/>
+                    <h:outputText value="#{singlePopProduct.unitprice}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+        <div class="kachel-Indie">
+            <h3>Indie</h3>
+            <h:dataTable id="IndieProductTable" var="singleIndieProduct"
+                         value="#{productJSF.getIndieProducts()}">
+                <h:column>
+                    <h:outputText value="#{singleIndieProduct.name}: "/>
+                    <h:outputText value="#{singleIndieProduct.description}"/>
+                    <h:outputText value="#{singleIndieProduct.unitprice}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+        <div class="kachel-Dance">
+            <h3>Electronic/Dance</h3>
+            <h:dataTable id="ElectronicProductTable" var="singleElectronicProduct"
+                         value="#{productJSF.getElectronicProducts()}">
+                <h:column>
+                    <h:outputText value="#{singleElectronicProduct.name}: "/>
+                    <h:outputText value="#{singleElectronicProduct.description}"/>
+                    <h:outputText value="#{singleElectronicProduct.unitprice}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </ui:define>
+</ui:composition>

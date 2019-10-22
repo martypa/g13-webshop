@@ -76,3 +76,12 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/maven,intellij+all
+.idea/sonarlint/
+common/common.iml
+data/data.iml
+ear/ear.iml
+ejb/ejb.iml
+ejb/src/main/java/ch/hslu/edu/enapp/webshop/entity/
+rest/rest.iml
+soap/soap.iml
+web/web.iml
