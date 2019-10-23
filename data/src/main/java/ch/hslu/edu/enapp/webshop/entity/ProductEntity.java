@@ -8,7 +8,8 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getProducts", query = "SELECT u FROM ProductEntity  u"),
-        @NamedQuery(name = "getRockProducts", query = "SELECT u FROM ProductEntity u WHERE u.mediapath=:mediapath")
+        @NamedQuery(name = "getRockProducts", query = "SELECT u FROM ProductEntity u WHERE u.mediapath=:mediapath"),
+        @NamedQuery(name = "getProductByName", query = "SELECT u FROM ProductEntity u WHERE u.name=:name")
 })
 @Table(name = "product", schema = "webshop", catalog = "")
 public class ProductEntity {

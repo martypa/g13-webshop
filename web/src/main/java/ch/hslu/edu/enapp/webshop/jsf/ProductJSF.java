@@ -23,14 +23,20 @@ public class ProductJSF {
     public List<Product> getRockProducts(){
         return productService.getProductsMediaPaths("Rock");
     }
+
     public List<Product> getIndieProducts(){
         return productService.getProductsMediaPaths("Indie");
     }
+
     public List<Product> getPopProducts(){
         return productService.getProductsMediaPaths("Pop");
     }
+
     public List<Product> getElectronicProducts(){
         return productService.getProductsMediaPaths("Electronic");
     }
 
+    public List<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
 }

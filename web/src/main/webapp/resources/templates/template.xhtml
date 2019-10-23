@@ -6,7 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <h:outputStylesheet name="css/default.css"/>
-    <h:outputStylesheet name="css/table.css"/>
     <title><ui:insert name="title">MP3 Webshop</ui:insert></title>
 </h:head>
 <h:body>
@@ -23,19 +22,12 @@
             <h:form id="content_form">
                 <ul>
                     <li><h:graphicImage name="images/home.svg" styleClass="icons"/><h:commandLink action="/index" value="Home"/></li>
-                    <li><h:graphicImage name="images/login.svg" styleClass="icons"/><h:commandLink action="/login" value="Login"/></li>
-                    <li><h:graphicImage name="images/basket.svg" styleClass="icons"/><h:commandLink action="/basket" value="Shopping Card"/></li>
+                    <li><h:graphicImage name="images/basket.svg" styleClass="icons"/><h:commandLink action="/caddy" value="Shopping Card"/></li>
+                    <li><h:graphicImage name="images/login.svg" styleClass="icons"/><h:commandLink action="/secure_caddy" value="Purchase"/></li>
                 </ul>
             </h:form>
         </div>
         <div id="content" class="content">
-            <div id="message_box">
-                <h:messages id="messages" layout="table"
-                            styleClass="messages" errorClass="errormsg"
-                            infoClass="infomsg" warnClass="warnmsg"
-                            globalOnly="false" showSummary="true"
-                            showDetail="false"/>
-            </div>
             <ui:insert name="content">Content</ui:insert>
         </div>
     </div>

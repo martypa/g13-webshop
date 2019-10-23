@@ -22,7 +22,7 @@ public class ProductService implements ProductServiceLocal {
     }
 
     @Override
-    public Product getFirstProduct(){
+    public Product getFirstProduct() {
         final TypedQuery<ProductEntity> query = em.createNamedQuery("getProducts", ProductEntity.class);
         final List<ProductEntity> results = query.getResultList();
         final ProductEntity userEntity = results.get(0);
@@ -32,17 +32,44 @@ public class ProductService implements ProductServiceLocal {
     }
 
     @Override
-    public List<Product> getProductsMediaPaths(String mediapath){
+    public List<Product> getProductsMediaPaths(String mediapath) {
         final TypedQuery<ProductEntity> query = em.createNamedQuery("getRockProducts", ProductEntity.class).setParameter("mediapath", mediapath);
         final List<ProductEntity> results = query.getResultList();
         List<Product> productList = new ArrayList<>();
-        results.forEach(item -> productList.add(new Product(item.getName(),
+        results.forEach(item -> productList.add(new Product(item.getId(),
+                item.getName(),
                 item.getDescription(),
                 item.getMediapath(),
                 item.getUnitprice())));
         return productList;
     }
 
+    @Override
+    public List<Product> getAllProducts() {
+        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProducts", ProductEntity.class);
+        final List<ProductEntity> results = query.getResultList();
+        List<Product> productList = new ArrayList<>();
+        results.forEach(item -> productList.add(new Product(item.getId(),
+                item.getName(),
+                item.getDescription(),
+                item.getMediapath(),
+                item.getUnitprice())));
+        return productList;
+    }
+
+    @Override
+    public Product getProductByName(String productName) {
+        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProductByName", ProductEntity.class).
+                setParameter("name", productName);
+        final List<ProductEntity> results = query.getResultList();
+        final ProductEntity userEntity = results.get(0);
+        final Product product = new Product(userEntity.getId(),
+                userEntity.getName(),
+                userEntity.getDescription(),
+                userEntity.getMediapath(),
+                userEntity.getUnitprice());
+        return product;
+    }
 
 
 }

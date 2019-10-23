@@ -4,6 +4,16 @@ import java.math.BigDecimal;
 
 public class Product {
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String name;
     private String description;
     private String mediapath;
@@ -24,7 +34,8 @@ public class Product {
         return mediapath;
     }
 
-    public Product(String name, String description, String mediapath, BigDecimal unitprice) {
+    public Product(int id, String name, String description, String mediapath, BigDecimal unitprice) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.mediapath = mediapath;

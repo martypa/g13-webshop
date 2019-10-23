@@ -5,36 +5,47 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/resources/templates/template.xhtml">
     <ui:define name="content">
-        <h:dataTable styleClass="table" id="rockProductTable" var="singleRockProduct"
-                     value="#{productJSF.getAllProducts()}">
+        <h:dataTable styleClass="table" id="caddyTable" var="singleCaddyProduct"
+                     value="#{caddyJSF.getCaddyList()}">
             <f:facet name="header">
-                <h:outputText value="MP3 Products"/>
+                <h:outputText value="Patrick Caddys for Purchase"/>
             </f:facet>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Trackname"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.name}: "/>
+                <h:outputText value="#{singleCaddyProduct.product.name}: "/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Description"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.description}"/>
+                <h:outputText value="#{singleCaddyProduct.product.description}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Price"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.unitprice}"/>
+                <h:outputText value="#{singleCaddyProduct.product.unitprice}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Number"/>
+                </f:facet>
+                <input id="number" value="#{singleCaddyProduct.quantity}" name="number" size="15"/>
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink action="#{caddyJSF.addProductToCaddy(singleRockProduct.name)}">
-                        <h:graphicImage value="resources/images/einkaufswagen.jpg" alt="caddy" styleClass="basket"/>
+                    <h:commandLink action="#{caddyJSF.removeProductFromCaddyList(singleCaddyProduct.product.name)}">
+                        <h:graphicImage value="resources/images/remove.png" alt="caddy" styleClass="basket"/>
                     </h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>
+        <div>
+            <h:form>
+                <h:commandButton value="submit" type="submit" action="#{productJSF.firstproduct}" />
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>
