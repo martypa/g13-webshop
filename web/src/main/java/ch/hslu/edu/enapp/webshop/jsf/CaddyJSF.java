@@ -25,7 +25,15 @@ public class CaddyJSF {
     }
 
     public void removeProductFromCaddyList(String productName){
-            caddyService.removeProductFromCaddyList(productName);
+        caddyService.removeProductFromCaddyList(productName);
+    }
+
+    public void removeAllProducts(){
+        caddyService.removeAllProductFromCaddy();
+    }
+
+    public boolean isNotEmpty(){
+        return !caddyService.getCaddyList().isEmpty();
     }
 
 }

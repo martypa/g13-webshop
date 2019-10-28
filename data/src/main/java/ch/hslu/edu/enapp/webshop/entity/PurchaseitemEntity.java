@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllItems", query = "SELECT i FROM PurchaseitemEntity i"),
+})
 @Table(name = "purchaseitem", schema = "webshop", catalog = "")
 public class PurchaseitemEntity {
     private int id;

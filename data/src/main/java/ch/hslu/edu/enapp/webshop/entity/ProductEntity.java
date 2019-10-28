@@ -9,7 +9,8 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "getProducts", query = "SELECT u FROM ProductEntity  u"),
         @NamedQuery(name = "getRockProducts", query = "SELECT u FROM ProductEntity u WHERE u.mediapath=:mediapath"),
-        @NamedQuery(name = "getProductByName", query = "SELECT u FROM ProductEntity u WHERE u.name=:name")
+        @NamedQuery(name = "getProductByName", query = "SELECT u FROM ProductEntity u WHERE u.name=:name"),
+        @NamedQuery(name = "getProductByID", query = "SELECT u FROM ProductEntity u WHERE u.id=:id")
 })
 @Table(name = "product", schema = "webshop", catalog = "")
 public class ProductEntity {

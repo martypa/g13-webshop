@@ -10,4 +10,6 @@ public interface CaddyServicesLocal {
     LinkedList<PurchaseItem> getCaddyList();
 
     void removeProductFromCaddyList(String productName);
+
+    void removeAllProductFromCaddy();
 }

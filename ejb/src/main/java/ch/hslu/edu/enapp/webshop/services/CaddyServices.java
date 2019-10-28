@@ -59,4 +59,9 @@ public class CaddyServices implements CaddyServicesLocal {
             System.out.println(ex);
         }
     }
+
+    @Override
+    public void removeAllProductFromCaddy(){
+        this.caddyList.clear();
+    }
 }

@@ -6,6 +6,10 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllPurchase", query = "SELECT p FROM PurchaseEntity p"),
+        @NamedQuery(name = "getPurchaseById", query = "SELECT p FROM PurchaseEntity p WHERE p.id=:id")
+})
 @Table(name = "purchase", schema = "webshop", catalog = "")
 public class PurchaseEntity {
     private int id;

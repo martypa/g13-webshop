@@ -24,6 +24,9 @@
                 <ul>
                     <li><h:graphicImage name="images/home.svg" styleClass="icons"/><h:commandLink action="/index" value="Home"/></li>
                     <li><h:graphicImage name="images/basket.svg" styleClass="icons"/><h:commandLink action="/secure/shopping?faces-redirect=true" value="Shopping"/></li>
+                    <li><h:graphicImage rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" name="images/purchase.svg" styleClass="icons"/>
+                        <h:commandLink rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" action="/caddy" value="Purchase"/>
+                    </li>
                     <li><h:graphicImage rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" name="images/logout.svg" styleClass="icons"/>
                         <h:commandLink rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" action="#{userSessionJSF.logout}" value="Logout"/>
                     </li>
