@@ -28,13 +28,6 @@
                 </f:facet>
                 <h:outputText value="#{singleRockProduct.unitprice}"/>
             </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandLink action="#{caddyJSF.addProductToCaddy(singleRockProduct.name)}">
-                        <h:graphicImage value="resources/images/einkaufswagen.jpg" alt="caddy" styleClass="basket"/>
-                    </h:commandLink>
-                </h:form>
-            </h:column>
         </h:dataTable>
     </ui:define>
 </ui:composition>
