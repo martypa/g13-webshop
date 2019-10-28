@@ -37,5 +37,3 @@ maven-deploy:
     - ls -la ear/target/*ear
     - mvn $MAVEN_CLI_OPTS -P prod -pl ear tomee:undeploy@undeploy-it
     - mvn $MAVEN_CLI_OPTS -P prod -pl ear tomee:deploy@deploy-it
-
-
