@@ -59,13 +59,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <my-tomeeHost>tomee</my-tomeeHost>
+                <my-tomeeHost>enapp-was113.el.eee.intern</my-tomeeHost>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <my-tomeeHost>tomee</my-tomeeHost>
+                <my-tomeeHost>enapp-was113.el.eee.intern</my-tomeeHost>
             </properties>
         </profile>
     </profiles>

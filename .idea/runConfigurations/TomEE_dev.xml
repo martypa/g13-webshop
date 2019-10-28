@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="TomEE dev" type="TomeeConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="TomEE 9.0.22" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="HOST" value="tomee" />
+    <option name="HOST" value="enapp-was113.el.eee.intern" />
     <option name="LOCAL" value="false" />
-    <option name="OPEN_IN_BROWSER_URL" value="http://tomee:8080/enapp" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://enapp-was113.el.eee.intern:8080/enapp" />
     <deployment />
     <server-settings>
       <data>
