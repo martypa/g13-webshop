@@ -20,6 +20,10 @@ public class CaddyJSF {
         caddyService.addProductToCaddy(productName);
     }
 
+    public void addProductToCaddyWithQuantity(String productname, int quantity){
+        caddyService.addProductToCaddy(productname,quantity);
+    }
+
     public LinkedList<PurchaseItem> getCaddyList(){
         return caddyService.getCaddyList();
     }

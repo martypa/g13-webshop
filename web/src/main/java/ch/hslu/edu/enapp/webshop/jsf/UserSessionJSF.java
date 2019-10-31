@@ -32,11 +32,6 @@ public class UserSessionJSF implements Serializable {
     public String logout() throws IOException {
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().invalidateSession();
-        final FacesMessage message = new
-                FacesMessage(FacesMessage.SEVERITY_INFO,
-                "Goodbye " + username, "");
-        facesContext.addMessage(null, message);
-        facesContext.getExternalContext().getFlash().setKeepMessages(true);
         return "/index?faces-redirect=true";
     }
 }

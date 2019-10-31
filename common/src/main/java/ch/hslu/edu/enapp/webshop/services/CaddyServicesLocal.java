@@ -12,4 +12,6 @@ public interface CaddyServicesLocal {
     void removeProductFromCaddyList(String productName);
 
     void removeAllProductFromCaddy();
+
+    public void addProductToCaddy(String productName, int quantity);
 }

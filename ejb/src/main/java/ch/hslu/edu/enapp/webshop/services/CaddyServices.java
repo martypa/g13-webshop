@@ -42,6 +42,21 @@ public class CaddyServices implements CaddyServicesLocal {
     }
 
     @Override
+    public void addProductToCaddy(String productName, int quantity) {
+        Product tmp = productservice.getProductByName(productName);
+        try {
+            for (PurchaseItem i : caddyList) {
+                if (i.getProduct().getId() == tmp.getId()) {
+                    int q = i.getQuantity();
+                    i.setQuantity((q + quantity));
+                }
+            }
+        }catch (ConcurrentModificationException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public LinkedList<PurchaseItem> getCaddyList(){
         return this.caddyList;
     }
