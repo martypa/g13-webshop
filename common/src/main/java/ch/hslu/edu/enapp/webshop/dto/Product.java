@@ -1,25 +1,41 @@
 package ch.hslu.edu.enapp.webshop.dto;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 public class Product {
 
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private String name;
+    private String no;
     private String description;
-    private String mediapath;
-    private BigDecimal unitprice;
+    private String owner;
+    private String mediafileName;
+    private String searchDescription;
+    private BigDecimal qtyOnSalesOrder;
+    private BigDecimal unitPrice;
+
 
     public Product() {
+    }
+
+    public Product(String no,
+                   String description, String owner,
+                   String mediafileName, String searchDescription, BigDecimal qtyOnSalesOrder, BigDecimal unitPrice) {
+        this.no = no;
+        this.description = description;
+        this.owner = owner;
+        this.mediafileName = mediafileName;
+        this.searchDescription = searchDescription;
+        this.qtyOnSalesOrder = qtyOnSalesOrder;
+        this.unitPrice = unitPrice;
+    }
+
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
     }
 
     public String getDescription() {
@@ -30,35 +46,43 @@ public class Product {
         this.description = description;
     }
 
-    public String getMediapath() {
-        return mediapath;
+    public String getOwner() {
+        return owner;
     }
 
-    public Product(int id, String name, String description, String mediapath, BigDecimal unitprice) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.mediapath = mediapath;
-        this.unitprice = unitprice;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
-    public void setMediapath(String mediapath) {
-        this.mediapath = mediapath;
+    public String getMediafileName() {
+        return mediafileName;
     }
 
-    public BigDecimal getUnitprice() {
-        return unitprice;
+    public void setMediafileName(String mediafileName) {
+        this.mediafileName = mediafileName;
     }
 
-    public void setUnitprice(BigDecimal unitprice) {
-        this.unitprice = unitprice;
+    public String getSearchDescription() {
+        return searchDescription;
     }
 
-    public String getName() {
-        return name;
+    public void setSearchDescription(String searchDescription) {
+        this.searchDescription = searchDescription;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public BigDecimal getQtyOnSalesOrder() {
+        return qtyOnSalesOrder;
+    }
+
+    public void setQtyOnSalesOrder(BigDecimal qtyOnSalesOrder) {
+        this.qtyOnSalesOrder = qtyOnSalesOrder;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

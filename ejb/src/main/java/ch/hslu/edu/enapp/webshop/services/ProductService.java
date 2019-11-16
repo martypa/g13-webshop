@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.xml.registry.infomodel.User;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,21 +27,8 @@ public class ProductService implements ProductServiceLocal {
         final List<ProductEntity> results = query.getResultList();
         final ProductEntity userEntity = results.get(0);
         final Product product = new Product();
-        product.setName(userEntity.getName());
+        product.setMediafileName(userEntity.getMediafileName());
         return product;
-    }
-
-    @Override
-    public List<Product> getProductsMediaPaths(String mediapath) {
-        final TypedQuery<ProductEntity> query = em.createNamedQuery("getRockProducts", ProductEntity.class).setParameter("mediapath", mediapath);
-        final List<ProductEntity> results = query.getResultList();
-        List<Product> productList = new ArrayList<>();
-        results.forEach(item -> productList.add(new Product(item.getId(),
-                item.getName(),
-                item.getDescription(),
-                item.getMediapath(),
-                item.getUnitprice())));
-        return productList;
     }
 
     @Override
@@ -49,11 +36,14 @@ public class ProductService implements ProductServiceLocal {
         final TypedQuery<ProductEntity> query = em.createNamedQuery("getProducts", ProductEntity.class);
         final List<ProductEntity> results = query.getResultList();
         List<Product> productList = new ArrayList<>();
-        results.forEach(item -> productList.add(new Product(item.getId(),
-                item.getName(),
+        results.forEach(item -> productList.add(new Product(
+                item.getNo(),
                 item.getDescription(),
-                item.getMediapath(),
-                item.getUnitprice())));
+                item.getOwner(),
+                item.getMediafileName(),
+                item.getSearchDescription(),
+                BigDecimal.valueOf(item.getQtyOnSalesOrder()),
+                BigDecimal.valueOf(item.getUnitPrice()))));
         return productList;
     }
 
@@ -63,12 +53,12 @@ public class ProductService implements ProductServiceLocal {
                 setParameter("name", productName);
         final List<ProductEntity> results = query.getResultList();
         final ProductEntity userEntity = results.get(0);
-        final Product product = new Product(userEntity.getId(),
+/*        final Product product = new Product(userEntity.getKey(),
                 userEntity.getName(),
                 userEntity.getDescription(),
                 userEntity.getMediapath(),
-                userEntity.getUnitprice());
-        return product;
+                userEntity.getUnitprice());*/
+        return null;
     }
 
 

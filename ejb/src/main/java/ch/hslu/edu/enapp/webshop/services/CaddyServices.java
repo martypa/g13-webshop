@@ -27,7 +27,7 @@ public class CaddyServices implements CaddyServicesLocal {
         boolean noMatch = true;
         try {
             for (PurchaseItem i : caddyList) {
-                if (i.getProduct().getId() == tmp.getId()) {
+                if (i.getProduct().getNo() == tmp.getNo()) {
                     int q = i.getQuantity();
                     i.setQuantity((q + 1));
                     noMatch = false;
@@ -46,7 +46,7 @@ public class CaddyServices implements CaddyServicesLocal {
         Product tmp = productservice.getProductByName(productName);
         try {
             for (PurchaseItem i : caddyList) {
-                if (i.getProduct().getId() == tmp.getId()) {
+                if (i.getProduct().getNo() == tmp.getNo()) {
                     int q = i.getQuantity();
                     i.setQuantity((q + quantity));
                 }
@@ -66,7 +66,7 @@ public class CaddyServices implements CaddyServicesLocal {
         try {
             Product tmp = productservice.getProductByName(productName);
             for (PurchaseItem i : caddyList) {
-                if (i.getProduct().getId() == tmp.getId()) {
+                if (i.getProduct().getNo() == tmp.getNo()) {
                     caddyList.remove(i);
                 }
             }

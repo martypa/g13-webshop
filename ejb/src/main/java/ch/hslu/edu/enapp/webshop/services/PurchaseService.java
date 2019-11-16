@@ -57,14 +57,14 @@ public class PurchaseService implements PurchaseServiceLocal {
         if(!results.isEmpty()) purchaseitemId = results.size();
         for (PurchaseItem item: purchase.getPurchaseItemList()) {
             final TypedQuery<ProductEntity> productQuery = em.createNamedQuery("getProductByID", ProductEntity.class)
-                    .setParameter("id", item.getProduct().getId());
+                    .setParameter("id", item.getProduct().getNo());
             PurchaseitemEntity itemEntity = new PurchaseitemEntity();
             itemEntity.setId(purchaseitemId);
-            itemEntity.setProduct(item.getProduct().getId());
+            itemEntity.setProduct(item.getProduct().getNo());
             itemEntity.setPurchase(purchaseNr);
             itemEntity.setQuantity(item.getQuantity());
-            itemEntity.setPurchaseByPurchase(purchaseQuary.getSingleResult());
-            itemEntity.setProductByProduct(productQuery.getSingleResult());
+/*            itemEntity.setPurchaseByPurchase(purchaseQuary.getSingleResult());
+            itemEntity.setProductByProduct(productQuery.getSingleResult());*/
             em.persist(itemEntity);
             purchaseitemId++;
         }

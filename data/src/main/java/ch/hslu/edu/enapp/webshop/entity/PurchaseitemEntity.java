@@ -11,7 +11,7 @@ import java.util.Objects;
 public class PurchaseitemEntity {
     private int id;
     private int purchase;
-    private int product;
+    private String product;
     private int quantity;
     private PurchaseEntity purchaseByPurchase;
     private ProductEntity productByProduct;
@@ -38,11 +38,11 @@ public class PurchaseitemEntity {
 
     @Basic
     @Column(name = "product", nullable = false, insertable=false, updatable=false)
-    public int getProduct() {
+    public String getProduct() {
         return product;
     }
 
-    public void setProduct(int product) {
+    public void setProduct(String product) {
         this.product = product;
     }
 
@@ -83,7 +83,7 @@ public class PurchaseitemEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "product", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "product", referencedColumnName = "no", nullable = false)
     public ProductEntity getProductByProduct() {
         return productByProduct;
     }

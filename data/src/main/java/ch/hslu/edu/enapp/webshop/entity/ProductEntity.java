@@ -1,48 +1,31 @@
 package ch.hslu.edu.enapp.webshop.entity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "getProducts", query = "SELECT u FROM ProductEntity  u"),
-        @NamedQuery(name = "getRockProducts", query = "SELECT u FROM ProductEntity u WHERE u.mediapath=:mediapath"),
-        @NamedQuery(name = "getProductByName", query = "SELECT u FROM ProductEntity u WHERE u.name=:name"),
-        @NamedQuery(name = "getProductByID", query = "SELECT u FROM ProductEntity u WHERE u.id=:id")
-})
 @Table(name = "product", schema = "webshop", catalog = "")
 public class ProductEntity {
-    private int id;
-    private String name;
+    private String no;
     private String description;
-    private String mediapath;
-    private BigDecimal unitprice;
-    private Collection<PurchaseitemEntity> purchaseitemsById;
+    private String owner;
+    private String mediafileName;
+    private String searchDescription;
+    private Double qtyOnSalesOrder;
+    private Double unitPrice;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "no", nullable = false, length = 127)
+    public String getNo() {
+        return no;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "name", nullable = false, length = 255)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setNo(String no) {
+        this.no = no;
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 255)
+    @Column(name = "description", nullable = true, length = 50)
     public String getDescription() {
         return description;
     }
@@ -52,23 +35,53 @@ public class ProductEntity {
     }
 
     @Basic
-    @Column(name = "mediapath", nullable = false, length = 255)
-    public String getMediapath() {
-        return mediapath;
+    @Column(name = "owner", nullable = true, length = 20)
+    public String getOwner() {
+        return owner;
     }
 
-    public void setMediapath(String mediapath) {
-        this.mediapath = mediapath;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     @Basic
-    @Column(name = "unitprice", nullable = false, precision = 2)
-    public BigDecimal getUnitprice() {
-        return unitprice;
+    @Column(name = "mediafileName", nullable = true, length = 15)
+    public String getMediafileName() {
+        return mediafileName;
     }
 
-    public void setUnitprice(BigDecimal unitprice) {
-        this.unitprice = unitprice;
+    public void setMediafileName(String mediafileName) {
+        this.mediafileName = mediafileName;
+    }
+
+    @Basic
+    @Column(name = "searchDescription", nullable = true, length = 15)
+    public String getSearchDescription() {
+        return searchDescription;
+    }
+
+    public void setSearchDescription(String searchDescription) {
+        this.searchDescription = searchDescription;
+    }
+
+    @Basic
+    @Column(name = "qtyOnSalesOrder", nullable = true, precision = 0)
+    public Double getQtyOnSalesOrder() {
+        return qtyOnSalesOrder;
+    }
+
+    public void setQtyOnSalesOrder(Double qtyOnSalesOrder) {
+        this.qtyOnSalesOrder = qtyOnSalesOrder;
+    }
+
+    @Basic
+    @Column(name = "unitPrice", nullable = false, precision = 0)
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     @Override
@@ -76,24 +89,17 @@ public class ProductEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductEntity that = (ProductEntity) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
+        return Double.compare(that.unitPrice, unitPrice) == 0 &&
+                Objects.equals(no, that.no) &&
                 Objects.equals(description, that.description) &&
-                Objects.equals(mediapath, that.mediapath) &&
-                Objects.equals(unitprice, that.unitprice);
+                Objects.equals(owner, that.owner) &&
+                Objects.equals(mediafileName, that.mediafileName) &&
+                Objects.equals(searchDescription, that.searchDescription) &&
+                Objects.equals(qtyOnSalesOrder, that.qtyOnSalesOrder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, mediapath, unitprice);
-    }
-
-    @OneToMany(mappedBy = "productByProduct")
-    public Collection<PurchaseitemEntity> getPurchaseitemsById() {
-        return purchaseitemsById;
-    }
-
-    public void setPurchaseitemsById(Collection<PurchaseitemEntity> purchaseitemsById) {
-        this.purchaseitemsById = purchaseitemsById;
+        return Objects.hash(no, description, owner, mediafileName, searchDescription, qtyOnSalesOrder, unitPrice);
     }
 }
