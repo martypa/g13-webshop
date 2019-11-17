@@ -5,28 +5,34 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/resources/templates/template.xhtml">
     <ui:define name="content">
-        <h:dataTable styleClass="table" id="rockProductTable" var="singleRockProduct"
+        <h:dataTable styleClass="table" id="productTable" var="singleProduct"
                      value="#{productJSF.getAllProducts()}">
             <f:facet name="header">
                 <h:outputText value="MP3 Products"/>
             </f:facet>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Trackname"/>
+                    <h:outputText value="article no"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.name}: "/>
+                <h:outputText value="#{singleProduct.no}: "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="artist"/>
+                </f:facet>
+                <h:outputText value="#{singleProduct.owner}: "/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Description"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.description}"/>
+                <h:outputText value="#{singleProduct.description}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Price"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.unitprice}"/>
+                <h:outputText value="#{singleProduct.unitPrice}"/>
             </h:column>
         </h:dataTable>
     </ui:define>

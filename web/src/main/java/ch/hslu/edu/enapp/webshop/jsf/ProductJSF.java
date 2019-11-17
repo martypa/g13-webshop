@@ -21,18 +21,9 @@ public class ProductJSF {
     @Inject
     private ERPServiceLocal erpService;
 
-    public Product getFirstproduct() {
-        return productService.getFirstProduct();
-    }
 
-
-/*    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts(){
         return productService.getAllProducts();
-    }*/
-
-    public void getAllProducts(){
-            erpService.updateDataBase();
     }
-
 
 }

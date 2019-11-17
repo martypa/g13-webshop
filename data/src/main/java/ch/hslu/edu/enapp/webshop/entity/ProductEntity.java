@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllProducts", query = "SELECT p FROM ProductEntity p"),
+        @NamedQuery(name = "getProdcutByNo", query = "SELECT p FROM ProductEntity p WHERE p.no=:no")
+})
+@NamedNativeQueries({
+})
 @Table(name = "product", schema = "webshop", catalog = "")
 public class ProductEntity {
     private String no;

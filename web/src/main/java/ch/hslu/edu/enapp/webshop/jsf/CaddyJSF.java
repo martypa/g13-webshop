@@ -16,8 +16,8 @@ public class CaddyJSF {
     @Inject
     private CaddyServicesLocal caddyService;
 
-    public void addProductToCaddy(String productName){
-        caddyService.addProductToCaddy(productName);
+    public void addProductToCaddy(String productNo){
+        caddyService.addProductToCaddy(productNo);
     }
 
     public void addProductToCaddyWithQuantity(String productname, int quantity){
@@ -28,8 +28,8 @@ public class CaddyJSF {
         return caddyService.getCaddyList();
     }
 
-    public void removeProductFromCaddyList(String productName){
-        caddyService.removeProductFromCaddyList(productName);
+    public void removeProductFromCaddyList(String productNo){
+        caddyService.removeProductFromCaddyList(productNo);
     }
 
     public void removeAllProducts(){

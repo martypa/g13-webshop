@@ -5,11 +5,11 @@ import ch.hslu.edu.enapp.webshop.dto.PurchaseItem;
 import java.util.LinkedList;
 
 public interface CaddyServicesLocal {
-    void addProductToCaddy(String productName);
+    void addProductToCaddy(String productNo);
 
     LinkedList<PurchaseItem> getCaddyList();
 
-    void removeProductFromCaddyList(String productName);
+    void removeProductFromCaddyList(String productNo);
 
     void removeAllProductFromCaddy();
 

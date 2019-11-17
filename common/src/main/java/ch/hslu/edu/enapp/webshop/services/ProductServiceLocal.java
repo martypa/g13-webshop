@@ -7,9 +7,7 @@ import java.util.List;
 
 @Local
 public interface ProductServiceLocal {
-    Product getFirstProduct();
+    List<Product> getAllProducts();
 
-    public List<Product> getAllProducts();
-
-    Product getProductByName(String productName);
+    Product getProductByNo(String productNo);
 }

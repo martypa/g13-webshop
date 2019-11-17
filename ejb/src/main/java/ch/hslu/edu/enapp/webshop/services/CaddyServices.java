@@ -22,8 +22,8 @@ public class CaddyServices implements CaddyServicesLocal {
     }
 
     @Override
-    public void addProductToCaddy(String productName) {
-        Product tmp = productservice.getProductByName(productName);
+    public void addProductToCaddy(String productNo) {
+        Product tmp = productservice.getProductByNo(productNo);
         boolean noMatch = true;
         try {
             for (PurchaseItem i : caddyList) {
@@ -43,7 +43,7 @@ public class CaddyServices implements CaddyServicesLocal {
 
     @Override
     public void addProductToCaddy(String productName, int quantity) {
-        Product tmp = productservice.getProductByName(productName);
+        Product tmp = productservice.getProductByNo(productName);
         try {
             for (PurchaseItem i : caddyList) {
                 if (i.getProduct().getNo() == tmp.getNo()) {
@@ -62,9 +62,9 @@ public class CaddyServices implements CaddyServicesLocal {
     }
 
     @Override
-    public void removeProductFromCaddyList(String productName) {
+    public void removeProductFromCaddyList(String productNo) {
         try {
-            Product tmp = productservice.getProductByName(productName);
+            Product tmp = productservice.getProductByNo(productNo);
             for (PurchaseItem i : caddyList) {
                 if (i.getProduct().getNo() == tmp.getNo()) {
                     caddyList.remove(i);

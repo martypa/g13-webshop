@@ -12,9 +12,15 @@
             </f:facet>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Trackname"/>
+                    <h:outputText value="article no"/>
                 </f:facet>
-                <h:outputText value="#{singleCaddyProduct.product.name}: "/>
+                <h:outputText value="#{singleCaddyProduct.product.no}: "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="artist"/>
+                </f:facet>
+                <h:outputText value="#{singleCaddyProduct.product.owner}: "/>
             </h:column>
             <h:column>
                 <f:facet name="header">
@@ -26,7 +32,7 @@
                 <f:facet name="header">
                     <h:outputText value="Price"/>
                 </f:facet>
-                <h:outputText value="#{singleCaddyProduct.product.unitprice}"/>
+                <h:outputText value="#{singleCaddyProduct.product.unitPrice}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
@@ -36,7 +42,7 @@
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink action="#{caddyJSF.removeProductFromCaddyList(singleCaddyProduct.product.name)}">
+                    <h:commandLink action="#{caddyJSF.removeProductFromCaddyList(singleCaddyProduct.product.no)}">
                         <h:graphicImage value="resources/images/delete.svg" alt="remove" styleClass="basket"/>
                     </h:commandLink>
                 </h:form>

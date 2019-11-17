@@ -5,32 +5,38 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/resources/templates/template.xhtml">
     <ui:define name="content">
-        <h:dataTable styleClass="table" id="rockProductTable" var="singleRockProduct"
+        <h:dataTable styleClass="table" id="purchaseTable" var="purchaseSingleProduct"
                      value="#{productJSF.getAllProducts()}">
             <f:facet name="header">
                 <h:outputText value="MP3 Products"/>
             </f:facet>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Trackname"/>
+                    <h:outputText value="article no"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.name}: "/>
+                <h:outputText value="#{purchaseSingleProduct.no}: "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="artist"/>
+                </f:facet>
+                <h:outputText value="#{purchaseSingleProduct.owner}: "/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Description"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.description}"/>
+                <h:outputText value="#{purchaseSingleProduct.description}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Price"/>
                 </f:facet>
-                <h:outputText value="#{singleRockProduct.unitprice}"/>
+                <h:outputText value="#{purchaseSingleProduct.unitPrice}"/>
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink action="#{caddyJSF.addProductToCaddy(singleRockProduct.name)}">
+                    <h:commandLink action="#{caddyJSF.addProductToCaddy(purchaseSingleProduct.no)}">
                         <h:graphicImage value="/resources/images/add.svg" alt="caddy" styleClass="basket"/>
                     </h:commandLink>
                 </h:form>

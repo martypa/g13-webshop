@@ -45,6 +45,7 @@ public class PurchaseService implements PurchaseServiceLocal {
         return id;
     }
 
+    //TODO: change to new product dto
     @Override
     public void submitPurchaseItems(Purchase purchase, int purchaseNr){
 

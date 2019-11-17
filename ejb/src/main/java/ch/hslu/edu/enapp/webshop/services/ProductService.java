@@ -22,18 +22,8 @@ public class ProductService implements ProductServiceLocal {
     }
 
     @Override
-    public Product getFirstProduct() {
-        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProducts", ProductEntity.class);
-        final List<ProductEntity> results = query.getResultList();
-        final ProductEntity userEntity = results.get(0);
-        final Product product = new Product();
-        product.setMediafileName(userEntity.getMediafileName());
-        return product;
-    }
-
-    @Override
     public List<Product> getAllProducts() {
-        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProducts", ProductEntity.class);
+        final TypedQuery<ProductEntity> query = em.createNamedQuery("getAllProducts", ProductEntity.class);
         final List<ProductEntity> results = query.getResultList();
         List<Product> productList = new ArrayList<>();
         results.forEach(item -> productList.add(new Product(
@@ -42,24 +32,24 @@ public class ProductService implements ProductServiceLocal {
                 item.getOwner(),
                 item.getMediafileName(),
                 item.getSearchDescription(),
-                BigDecimal.valueOf(item.getQtyOnSalesOrder()),
-                BigDecimal.valueOf(item.getUnitPrice()))));
+                item.getQtyOnSalesOrder(),
+                item.getUnitPrice())));
         return productList;
     }
 
     @Override
-    public Product getProductByName(String productName) {
-        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProductByName", ProductEntity.class).
-                setParameter("name", productName);
-        final List<ProductEntity> results = query.getResultList();
-        final ProductEntity userEntity = results.get(0);
-/*        final Product product = new Product(userEntity.getKey(),
-                userEntity.getName(),
-                userEntity.getDescription(),
-                userEntity.getMediapath(),
-                userEntity.getUnitprice());*/
-        return null;
-    }
+    public Product getProductByNo(String productNo){
+        final TypedQuery<ProductEntity> query = em.createNamedQuery("getProdcutByNo", ProductEntity.class)
+                .setParameter("no", productNo);
+        final ProductEntity results = query.getResultList().get(0);
 
+        return new Product(results.getNo(),
+                results.getDescription(),
+                results.getOwner(),
+                results.getMediafileName(),
+                results.getSearchDescription(),
+                results.getQtyOnSalesOrder(),
+                results.getUnitPrice());
+    }
 
 }

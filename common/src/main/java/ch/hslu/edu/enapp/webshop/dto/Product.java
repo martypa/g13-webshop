@@ -10,8 +10,8 @@ public class Product {
     private String owner;
     private String mediafileName;
     private String searchDescription;
-    private BigDecimal qtyOnSalesOrder;
-    private BigDecimal unitPrice;
+    private Double qtyOnSalesOrder;
+    private Double unitPrice;
 
 
     public Product() {
@@ -19,7 +19,7 @@ public class Product {
 
     public Product(String no,
                    String description, String owner,
-                   String mediafileName, String searchDescription, BigDecimal qtyOnSalesOrder, BigDecimal unitPrice) {
+                   String mediafileName, String searchDescription, Double qtyOnSalesOrder, Double unitPrice) {
         this.no = no;
         this.description = description;
         this.owner = owner;
@@ -70,19 +70,19 @@ public class Product {
         this.searchDescription = searchDescription;
     }
 
-    public BigDecimal getQtyOnSalesOrder() {
+    public Double getQtyOnSalesOrder() {
         return qtyOnSalesOrder;
     }
 
-    public void setQtyOnSalesOrder(BigDecimal qtyOnSalesOrder) {
+    public void setQtyOnSalesOrder(Double qtyOnSalesOrder) {
         this.qtyOnSalesOrder = qtyOnSalesOrder;
     }
 
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 }

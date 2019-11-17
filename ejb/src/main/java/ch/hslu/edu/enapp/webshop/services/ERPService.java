@@ -5,9 +5,11 @@ import ch.hslu.edu.enapp.webshop.entity.ProductEntity;
 import ch.hslu.edu.enapp.webshop.erp.*;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.xml.namespace.QName;
 import java.net.Authenticator;
 import java.net.MalformedURLException;
@@ -31,6 +33,9 @@ public class ERPService implements ERPServiceLocal {
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    ProductServiceLocal productService;
+
 
     public ERPService() {
     }
@@ -38,32 +43,33 @@ public class ERPService implements ERPServiceLocal {
 
     @Override
     public boolean updateDataBase() {
-        updateLocalDataBase(getAllProductsFromERP());
+        if (productService.getAllProducts().isEmpty()) {
+            updateLocalDataBase(getAllProductsFromERP());
+        }
         return false;
     }
-
 
     private void updateLocalDataBase(ItemList newList) {
         ArrayList<ProductEntity> pList = convertItemListToProductEntityList(newList);
         for (ProductEntity p:pList) {
-            insertNewProduct(p);
+            insertNewProductQuery(p);
         }
-        insertNewProduct(pList.get(0));
     }
 
-    private void insertNewProduct(ProductEntity p) {
+    //TODO: change to em.persist(ProductEntity)
+    private void insertNewProductQuery(ProductEntity p) {
         Query q = em.createNativeQuery("INSERT INTO product(" +
                 "no," +
                 "description,owner," +
                 "mediafileName,searchDescription," +
                 "qtyOnSalesOrder,unitPrice) VALUES(?,?,?,?,?,?,?)");
-        q.setParameter(1,p.getNo());
-        q.setParameter(2,p.getDescription());
-        q.setParameter(3,p.getOwner());
-        q.setParameter(4,p.getMediafileName());
-        q.setParameter(5,p.getSearchDescription());
-        q.setParameter(6,p.getQtyOnSalesOrder());
-        q.setParameter(7,p.getUnitPrice());
+        q.setParameter(1, p.getNo());
+        q.setParameter(2, p.getDescription());
+        q.setParameter(3, p.getOwner());
+        q.setParameter(4, p.getMediafileName());
+        q.setParameter(5, p.getSearchDescription());
+        q.setParameter(6, p.getQtyOnSalesOrder());
+        q.setParameter(7, p.getUnitPrice());
         q.executeUpdate();
     }
 
