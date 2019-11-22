@@ -1,5 +1,6 @@
 package ch.hslu.edu.enapp.webshop.entity;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -7,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
+        @NamedQuery(name = "getNumberOfPurchases", query = "SELECT COUNT(p) FROM PurchaseEntity p"),
         @NamedQuery(name = "getAllPurchase", query = "SELECT p FROM PurchaseEntity p"),
         @NamedQuery(name = "getPurchaseById", query = "SELECT p FROM PurchaseEntity p WHERE p.id=:id")
 })

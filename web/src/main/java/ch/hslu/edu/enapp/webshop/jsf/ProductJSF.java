@@ -19,10 +19,11 @@ public class ProductJSF {
     private ProductServiceLocal productService;
 
     @Inject
-    private ERPServiceLocal erpService;
+    private ERPServiceLocal erpServiceLocal;
 
 
     public List<Product> getAllProducts(){
+        this.erpServiceLocal.updateDataBase();
         return productService.getAllProducts();
     }
 

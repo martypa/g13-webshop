@@ -10,6 +10,7 @@ import ch.hslu.edu.enapp.webshop.entity.PurchaseitemEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -26,46 +27,44 @@ public class PurchaseService implements PurchaseServiceLocal {
 
     @Override
     public int submitNewPurchase(Purchase purchase) {
-        PurchaseEntity purchaseEntity = new PurchaseEntity();
-        int id = 0;
+        PurchaseEntity newPurchaseEntity = new PurchaseEntity();
 
-        final TypedQuery<PurchaseEntity> purchasePuery = em.createNamedQuery("getAllPurchase", PurchaseEntity.class);
-        final List<PurchaseEntity> results = purchasePuery.getResultList();
+        final TypedQuery<Long> numberOfPurchasesQuery = em.createNamedQuery("getNumberOfPurchases", Long.class);
+        int id = Math.toIntExact(numberOfPurchasesQuery.getSingleResult());
+
         final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getCustomerByName", CustomerEntity.class)
                 .setParameter("name", purchase.getCustomerName());
 
-        if (!results.isEmpty()) id = results.size();
-        purchaseEntity.setId(id);
-        purchaseEntity.setCustomer(purchase.getCustomerName());
-        purchaseEntity.setCustomerByCustomer(customerQuery.getSingleResult());
-        purchaseEntity.setDatetime(purchase.getDatetime());
-        purchaseEntity.setState("Registriert");
+        newPurchaseEntity.setId(id);
+        newPurchaseEntity.setCustomer(purchase.getCustomerName());
+        newPurchaseEntity.setCustomerByCustomer(customerQuery.getSingleResult());
+        newPurchaseEntity.setDatetime(purchase.getDatetime());
+        newPurchaseEntity.setState("Registriert");
 
-        em.persist(purchaseEntity);
+        em.persist(newPurchaseEntity);
         return id;
     }
 
-    //TODO: change to new product dto
     @Override
     public void submitPurchaseItems(Purchase purchase, int purchaseNr){
 
-        final TypedQuery<PurchaseitemEntity> purchasePuery = em.createNamedQuery("getAllItems", PurchaseitemEntity.class);
-        final List<PurchaseitemEntity> results = purchasePuery.getResultList();
+        final TypedQuery<Long> numberOfPurchaseItemQuery = em.createNamedQuery("getNumberOfPurchases", Long.class);
+        final int numberOfPurchaseItem = Math.toIntExact(numberOfPurchaseItemQuery.getSingleResult());
         final TypedQuery<PurchaseEntity> purchaseQuary = em.createNamedQuery("getPurchaseById", PurchaseEntity.class)
                 .setParameter("id", purchaseNr);
+        final PurchaseEntity selectedPurchase = purchaseQuary.getSingleResult();
 
-        int purchaseitemId = 0;
-        if(!results.isEmpty()) purchaseitemId = results.size();
+        int purchaseitemId = numberOfPurchaseItem;
         for (PurchaseItem item: purchase.getPurchaseItemList()) {
-            final TypedQuery<ProductEntity> productQuery = em.createNamedQuery("getProductByID", ProductEntity.class)
-                    .setParameter("id", item.getProduct().getNo());
+            final TypedQuery<ProductEntity> productQuery = em.createNamedQuery("getProdcutByNo", ProductEntity.class)
+                    .setParameter("no", item.getProduct().getNo());
             PurchaseitemEntity itemEntity = new PurchaseitemEntity();
             itemEntity.setId(purchaseitemId);
             itemEntity.setProduct(item.getProduct().getNo());
             itemEntity.setPurchase(purchaseNr);
             itemEntity.setQuantity(item.getQuantity());
-/*            itemEntity.setPurchaseByPurchase(purchaseQuary.getSingleResult());
-            itemEntity.setProductByProduct(productQuery.getSingleResult());*/
+            itemEntity.setPurchaseByPurchase(selectedPurchase);
+            itemEntity.setProductByProduct(productQuery.getSingleResult());
             em.persist(itemEntity);
             purchaseitemId++;
         }

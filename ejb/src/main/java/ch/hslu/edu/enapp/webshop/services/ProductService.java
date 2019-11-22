@@ -4,6 +4,7 @@ import ch.hslu.edu.enapp.webshop.dto.Product;
 import ch.hslu.edu.enapp.webshop.entity.ProductEntity;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
+        @NamedQuery(name = "getNumberOfPurchaseitem", query = "SELECT COUNT(i) FROM PurchaseitemEntity i"),
         @NamedQuery(name = "getAllItems", query = "SELECT i FROM PurchaseitemEntity i"),
 })
 @Table(name = "purchaseitem", schema = "webshop", catalog = "")

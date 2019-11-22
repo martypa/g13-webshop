@@ -2,8 +2,10 @@ package ch.hslu.edu.enapp.webshop.services;
 
 import ch.hslu.edu.enapp.webshop.dto.PurchaseItem;
 
+import javax.ejb.Local;
 import java.util.LinkedList;
 
+@Local
 public interface CaddyServicesLocal {
     void addProductToCaddy(String productNo);
 
@@ -13,5 +15,5 @@ public interface CaddyServicesLocal {
 
     void removeAllProductFromCaddy();
 
-    public void addProductToCaddy(String productName, int quantity);
+    void addProductToCaddy(String productName, int quantity);
 }
