@@ -89,7 +89,7 @@ public class Purchase {
     private double calculateAmount(LinkedList<PurchaseItem> items){
         double total = 0;
         for (PurchaseItem i:items) {
-            total =+ (i.getQuantity()*i.getProduct().getUnitPrice());
+            total = total + (i.getQuantity()*i.getProduct().getUnitPrice());
         }
         return total;
     }

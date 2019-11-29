@@ -49,13 +49,13 @@ public class PurchaseService implements PurchaseServiceLocal {
     @Override
     public void submitPurchaseItems(Purchase purchase){
 
-        final TypedQuery<Long> numberOfPurchaseItemQuery = em.createNamedQuery("getNumberOfPurchases", Long.class);
-        final int numberOfPurchaseItem = Math.toIntExact(numberOfPurchaseItemQuery.getSingleResult());
+        final TypedQuery<Long> numberOfPurchaseItemQuery = em.createNamedQuery("getNumberOfPurchaseitem", Long.class);
+        final int d = Math.toIntExact(numberOfPurchaseItemQuery.getSingleResult());
         final TypedQuery<PurchaseEntity> purchaseQuary = em.createNamedQuery("getPurchaseById", PurchaseEntity.class)
                 .setParameter("id", purchase.getPurchaseID());
         final PurchaseEntity selectedPurchase = purchaseQuary.getSingleResult();
 
-        int purchaseitemId = numberOfPurchaseItem;
+        int purchaseitemId = d+1;
         for (PurchaseItem item: purchase.getPurchaseItemList()) {
             final TypedQuery<ProductEntity> productQuery = em.createNamedQuery("getProdcutByNo", ProductEntity.class)
                     .setParameter("no", item.getProduct().getNo());
