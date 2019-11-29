@@ -38,6 +38,8 @@ public class OrderingService implements OrderingServiceLocal {
         purchaseService.submitPurchaseItems(purchase);
         messageService.sendNewMessage(purchase);
 
+
+
     }
 
 
