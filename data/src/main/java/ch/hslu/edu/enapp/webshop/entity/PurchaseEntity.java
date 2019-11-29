@@ -10,7 +10,8 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "getNumberOfPurchases", query = "SELECT COUNT(p) FROM PurchaseEntity p"),
         @NamedQuery(name = "getAllPurchase", query = "SELECT p FROM PurchaseEntity p"),
-        @NamedQuery(name = "getPurchaseById", query = "SELECT p FROM PurchaseEntity p WHERE p.id=:id")
+        @NamedQuery(name = "getPurchaseById", query = "SELECT p FROM PurchaseEntity p WHERE p.id=:id"),
+        @NamedQuery(name = "getPurchaseByCustomerName", query = "SELECT p FROM PurchaseEntity p WHERE p.customer=:customer")
 })
 @Table(name = "purchase", schema = "webshop", catalog = "")
 public class PurchaseEntity {
@@ -18,6 +19,8 @@ public class PurchaseEntity {
     private String customer;
     private Timestamp datetime;
     private String state;
+    private double amount;
+    private long payid;
     private CustomerEntity customerByCustomer;
     private Collection<PurchaseitemEntity> purchaseitemsById;
 
@@ -59,6 +62,26 @@ public class PurchaseEntity {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Basic
+    @Column(name = "amount", nullable = true)
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    @Basic
+    @Column(name = "payid", nullable = true)
+    public long getPayid() {
+        return payid;
+    }
+
+    public void setPayid(long payid) {
+        this.payid = payid;
     }
 
     @Override

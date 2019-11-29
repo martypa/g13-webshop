@@ -1,6 +1,7 @@
 package ch.hslu.edu.enapp.webshop.jsf;
 
 import ch.hslu.edu.enapp.webshop.dto.Purchase;
+import ch.hslu.edu.enapp.webshop.services.OrderingServiceLocal;
 import ch.hslu.edu.enapp.webshop.services.PostFinanceServiceLocal;
 import ch.hslu.edu.enapp.webshop.services.PurchaseServiceLocal;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -20,7 +21,7 @@ public class PurchaseJSF{
     @Inject
     UserSessionJSF user;
     @Inject
-    PurchaseServiceLocal purchaseService;
+    OrderingServiceLocal orderService;
     @Inject
     CaddyJSF caddy;
     @Inject
@@ -28,11 +29,11 @@ public class PurchaseJSF{
 
     private boolean empty = true;
 
-    public String submitPurchase(){
-       /* if(caddy.getCaddyList().isEmpty()){
+    public String submitPurchase() {
+        if (caddy.getCaddyList().isEmpty()) {
             this.empty = true;
             return "/failPurchase";
-        }else {
+        } else {
             this.empty = false;
             Purchase purchase = new Purchase(
                     user.getUsername(),
@@ -40,17 +41,11 @@ public class PurchaseJSF{
                     "Registriert",
                     caddy.getCaddyList()
             );
-
-            int i = purchaseService.submitNewPurchase(purchase);
-            purchaseService.submitPurchaseItems(purchase, i);
-            caddy.removeAllProducts();*/
-            this.postFinanceService.send();
+            orderService.submitNewOrder(purchase);
+            caddy.removeAllProducts();
             return "/index";
 
-    }
-
-    public boolean getEmpty(){
-        return this.empty;
+        }
     }
 
 

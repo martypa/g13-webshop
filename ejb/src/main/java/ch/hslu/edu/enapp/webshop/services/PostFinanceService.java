@@ -1,16 +1,12 @@
 package ch.hslu.edu.enapp.webshop.services;
 
 import ch.hslu.edu.enapp.webshop.dto.PostFinanceCall;
-import ch.hslu.edu.enapp.webshop.postfinance.DccResponse;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
+import ch.hslu.edu.enapp.webshop.dto.PostFinanceResponse;
+
 
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.ws.rs.client.*;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -19,10 +15,8 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
-@Stateful
+@Stateless
 public class PostFinanceService implements PostFinanceServiceLocal {
 
 
@@ -41,13 +35,16 @@ public class PostFinanceService implements PostFinanceServiceLocal {
 
 
     @Override
-    public void send(){
+    public PostFinanceResponse send(int orderID, double amount){
+
+        int amountTmp = (int)amount*100;
+
         PostFinanceCall callObject = new PostFinanceCall(
-                1500,
+                amountTmp,
                 "5399999999999999",
                 "CHF",
                 "RES",
-                1235,
+                orderID,
                 PSPID,
                 SHA1_PASSWORD_IN,
                 USERID,
@@ -63,20 +60,16 @@ public class PostFinanceService implements PostFinanceServiceLocal {
         final Response result = builder.post(Entity.form(callObject.getCallObject()));
         final String xmlResponse = result.readEntity(String.class);
 
-        JAXBContext jaxbContext     = null;
+        PostFinanceResponse response = null;
         try {
-            jaxbContext = JAXBContext.newInstance( DccResponse.class );
+            JAXBContext jaxbContext = JAXBContext.newInstance( PostFinanceResponse.class );
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(new StringReader(xmlResponse));
-            DccResponse response = (DccResponse) jaxbUnmarshaller.unmarshal(reader);
+            response = (PostFinanceResponse) jaxbUnmarshaller.unmarshal(reader);
         } catch (JAXBException | XMLStreamException e) {
             e.printStackTrace();
         }
-
+        return response;
     }
-
-
-
-
 
 }

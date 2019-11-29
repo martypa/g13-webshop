@@ -1,13 +1,8 @@
 
-package ch.hslu.edu.enapp.webshop.postfinance;
+package ch.hslu.edu.enapp.webshop.dto;
 
 import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -49,7 +44,7 @@ import javax.xml.bind.annotation.XmlValue;
 })
 @XmlRootElement(name = "ncresponse")
 @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2019-11-28T04:14:27+01:00", comments = "JAXB RI v2.2.8-b130911.1802")
-public class Ncresponse {
+public class PostFinanceResponse {
 
     @XmlValue
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2019-11-28T04:14:27+01:00", comments = "JAXB RI v2.2.8-b130911.1802")

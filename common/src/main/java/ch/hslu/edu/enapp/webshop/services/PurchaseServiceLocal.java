@@ -3,9 +3,9 @@ package ch.hslu.edu.enapp.webshop.services;
 import ch.hslu.edu.enapp.webshop.dto.Purchase;
 
 public interface PurchaseServiceLocal {
-    int submitNewPurchase(Purchase purchase);
+    void submitNewPurchase(Purchase purchase);
 
-    void submitPurchaseItems(Purchase purchase, int purchaseNr);
+    void submitPurchaseItems(Purchase purchase);
 
     Purchase getPurchaseByCustomerName(String customerName);
 }

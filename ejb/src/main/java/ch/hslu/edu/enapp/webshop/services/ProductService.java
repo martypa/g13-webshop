@@ -27,14 +27,7 @@ public class ProductService implements ProductServiceLocal {
         final TypedQuery<ProductEntity> query = em.createNamedQuery("getAllProducts", ProductEntity.class);
         final List<ProductEntity> results = query.getResultList();
         List<Product> productList = new ArrayList<>();
-        results.forEach(item -> productList.add(new Product(
-                item.getNo(),
-                item.getDescription(),
-                item.getOwner(),
-                item.getMediafileName(),
-                item.getSearchDescription(),
-                item.getQtyOnSalesOrder(),
-                item.getUnitPrice())));
+        results.forEach(item -> productList.add(getProductByProductEntity(item)));
         return productList;
     }
 
@@ -44,13 +37,20 @@ public class ProductService implements ProductServiceLocal {
                 .setParameter("no", productNo);
         final ProductEntity results = query.getResultList().get(0);
 
-        return new Product(results.getNo(),
-                results.getDescription(),
-                results.getOwner(),
-                results.getMediafileName(),
-                results.getSearchDescription(),
-                results.getQtyOnSalesOrder(),
-                results.getUnitPrice());
+        return getProductByProductEntity(results);
+    }
+
+
+    private Product getProductByProductEntity(ProductEntity p){
+        return new Product(
+                p.getNo(),
+                p.getDescription(),
+                p.getOwner(),
+                p.getMediafileName(),
+                p.getSearchDescription(),
+                p.getQtyOnSalesOrder(),
+                p.getUnitPrice()
+        );
     }
 
 }

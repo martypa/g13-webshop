@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getCustomerByName", query = "SELECT c FROM CustomerEntity c WHERE c.name=:name")
+        @NamedQuery(name = "getCustomerByName", query = "SELECT c FROM CustomerEntity c WHERE c.name=:name"),
 })
 @Table(name = "customer", schema = "webshop", catalog = "")
 public class CustomerEntity {
@@ -16,8 +16,11 @@ public class CustomerEntity {
     private String lastname;
     private String address;
     private String email;
+    private int dynNavCustNo;
     private Collection<CustomertoroleEntity> customertorolesByName;
     private Collection<PurchaseEntity> purchasesByName;
+
+
 
     @Id
     @Column(name = "name", nullable = false, length = 255)
@@ -78,6 +81,14 @@ public class CustomerEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Basic
+    @Column(name = "dynNavCustNo", nullable = true)
+    public int getDynNavCustNo() {
+        return dynNavCustNo;
+    }
+
+    public void setDynNavCustNo(int dynNavCustNo){this.dynNavCustNo = dynNavCustNo;}
 
     @Override
     public boolean equals(Object o) {
