@@ -33,9 +33,9 @@ public class MessageService implements MessageServiceLocal {
     }
 
     @Override
-    public void sendNewMessage(Purchase purchase){
+    public String sendNewMessage(Purchase purchase){
 
-
+        String correlationID = UUID.randomUUID().toString();
         try {
             Connection connection = enappRemoteFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -50,11 +50,12 @@ public class MessageService implements MessageServiceLocal {
 
             final TextMessage textMessage = session.createTextMessage(textmessage);
             textMessage.setStringProperty("MessageFormat", "Version 1.5");
-            textMessage.setJMSCorrelationID(UUID.randomUUID().toString());
+            textMessage.setJMSCorrelationID(correlationID);
             producer.send(textMessage);
         } catch (JAXBException | JMSException e) {
             e.printStackTrace();
         }
+        return correlationID;
     }
 
 

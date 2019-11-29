@@ -42,6 +42,7 @@ public class PurchaseService implements PurchaseServiceLocal {
         newPurchaseEntity.setState("Registriert");
         newPurchaseEntity.setAmount(purchase.getAmount());
         newPurchaseEntity.setPayid(purchase.getPayID());
+        newPurchaseEntity.setCorrelationId(purchase.getCorrelationId());
 
         em.persist(newPurchaseEntity);
     }
@@ -95,6 +96,16 @@ public class PurchaseService implements PurchaseServiceLocal {
         );
     }
 
+
+
+    @Override
+    public void setCorrelationIdByPurchaseID(int purchaseID, String correlationID){
+        final Query query = em.createNamedQuery("updateCorrIdByPurchaseID")
+                .setParameter("id", purchaseID)
+                .setParameter("corrID", correlationID);
+        query.executeUpdate();
+    }
+
     private Product getProductByProductEntity(ProductEntity p){
         return new Product(
                 p.getNo(),
@@ -106,10 +117,5 @@ public class PurchaseService implements PurchaseServiceLocal {
                 p.getUnitPrice()
         );
     }
-
-
-
-
-
 
 }

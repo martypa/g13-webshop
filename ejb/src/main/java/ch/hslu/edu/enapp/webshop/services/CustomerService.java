@@ -6,6 +6,7 @@ import ch.hslu.edu.enapp.webshop.entity.CustomerEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Stateless
@@ -34,6 +35,14 @@ public class CustomerService implements CustomerServiceLocal {
                 .setParameter("dynNo", dynNo);
         CustomerEntity customerEntity = customerQuery.getSingleResult();
         return customerEntityToCustomer(customerEntity);
+    }
+
+    @Override
+    public void updateDynNo(String dynNo, String loginName){
+        final Query customerQuery = em.createNamedQuery("updateDynNoByName")
+                .setParameter("name", loginName)
+                .setParameter("dynNo", dynNo);
+        customerQuery.executeUpdate();
     }
 
     private Customer customerEntityToCustomer(CustomerEntity entity){

@@ -56,7 +56,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 @XmlRootElement(name = "salesorder")
 @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2019-11-29T01:54:31+01:00", comments = "JAXB RI v2.2.8-b130911.1802")
-public class Salesorder {
+public class SalesOrderStatus {
 
     @XmlElement(required = true)
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2019-11-29T01:54:31+01:00", comments = "JAXB RI v2.2.8-b130911.1802")

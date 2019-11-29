@@ -7,7 +7,8 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getCustomerByName", query = "SELECT c FROM CustomerEntity c WHERE c.name=:name"),
-        @NamedQuery(name = "getCustomerbyDynNo", query = "SELECT c FROM CustomerEntity c WHERE c.dynNavCustNo=:dynNo")
+        @NamedQuery(name = "getCustomerbyDynNo", query = "SELECT c FROM CustomerEntity c WHERE c.dynNavCustNo=:dynNo"),
+        @NamedQuery(name = "updateDynNoByName", query = "UPDATE CustomerEntity c SET c.dynNavCustNo=:dynNo WHERE c.name=:name")
 })
 @Table(name = "customer", schema = "webshop", catalog = "")
 public class CustomerEntity {
@@ -84,7 +85,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "dynNavCustNo", nullable = true, length = 11)
+    @Column(name = "dynNavCustNo", nullable = true, length = 255)
     public String getDynNavCustNo() {
         return dynNavCustNo;
     }

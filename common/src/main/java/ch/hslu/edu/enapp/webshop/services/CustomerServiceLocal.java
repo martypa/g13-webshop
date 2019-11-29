@@ -9,4 +9,6 @@ public interface CustomerServiceLocal {
     Customer getCustomerByLoginName(String loginName);
 
     Customer getCustomerbyDynNO(String dynNo);
+
+    void updateDynNo(String dynNo, String loginName);
 }

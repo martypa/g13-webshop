@@ -10,6 +10,7 @@ public class Purchase {
     private long payID;
     private double amount;
     private String state;
+    private String correlationId;
     private LinkedList<PurchaseItem> purchaseItemList;
 
     public Purchase(String customerName, Timestamp datetime, String state, LinkedList<PurchaseItem> purchaseItemList) {
@@ -92,5 +93,13 @@ public class Purchase {
             total = total + (i.getQuantity()*i.getProduct().getUnitPrice());
         }
         return total;
+    }
+
+    public String getCorrelationId() {
+        return correlationId;
+    }
+
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
     }
 }

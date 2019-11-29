@@ -22,6 +22,9 @@ public class OrderingService implements OrderingServiceLocal {
     @Inject
     MessageServiceLocal messageService;
 
+    @Inject
+    OrderStatusServiceLocal orderStatusService;
+
 
 
     public OrderingService() {
@@ -29,17 +32,19 @@ public class OrderingService implements OrderingServiceLocal {
 
 
     @Override
-    public void submitNewOrder(Purchase purchase){
-
+    public boolean submitNewOrder(Purchase purchase){
+        boolean statusOK = false;
         purchase.setPurchaseID((new Random().nextInt(1000000-0) + 0));
         PostFinanceResponse response = postFinanceService.send(purchase.getPurchaseID(), purchase.getAmount());
-        purchase.setPayID(response.getPAYID());
-        purchaseService.submitNewPurchase(purchase);
-        purchaseService.submitPurchaseItems(purchase);
-        messageService.sendNewMessage(purchase);
-
-
-
+        if(response.getPAYID() != null) {
+            purchase.setPayID(response.getPAYID());
+            String correlationID = messageService.sendNewMessage(purchase);
+            purchase.setCorrelationId(correlationID);
+            purchaseService.submitNewPurchase(purchase);
+            purchaseService.submitPurchaseItems(purchase);
+            statusOK = true;
+        }
+        return statusOK;
     }
 
 

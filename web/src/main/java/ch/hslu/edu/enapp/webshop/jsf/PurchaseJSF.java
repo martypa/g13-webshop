@@ -1,9 +1,8 @@
 package ch.hslu.edu.enapp.webshop.jsf;
 
 import ch.hslu.edu.enapp.webshop.dto.Purchase;
-import ch.hslu.edu.enapp.webshop.services.OrderingServiceLocal;
-import ch.hslu.edu.enapp.webshop.services.PostFinanceServiceLocal;
-import ch.hslu.edu.enapp.webshop.services.PurchaseServiceLocal;
+import ch.hslu.edu.enapp.webshop.dto.SalesOrderStatus;
+import ch.hslu.edu.enapp.webshop.services.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.enterprise.context.RequestScoped;
@@ -25,7 +24,9 @@ public class PurchaseJSF{
     @Inject
     CaddyJSF caddy;
     @Inject
-    PostFinanceServiceLocal postFinanceService;
+    OrderStatusServiceLocal orderStatusService;
+    @Inject
+    CustomerServiceLocal customerService;
 
     private boolean empty = true;
 
@@ -41,10 +42,25 @@ public class PurchaseJSF{
                     "Registriert",
                     caddy.getCaddyList()
             );
-            orderService.submitNewOrder(purchase);
+
+            boolean statusOK = orderService.submitNewOrder(purchase);
+
+            if(statusOK){
+                SalesOrderStatus status;
+                do {
+                    status = orderStatusService.getSalesOrderStatus(purchase.getCorrelationId());
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }while (status == null || status.getDynNAVCustomerNo() == null);
+                customerService.updateDynNo(status.getDynNAVCustomerNo(), user.getUsername());
+            }
+
+
             caddy.removeAllProducts();
             return "/index";
-
         }
     }
 

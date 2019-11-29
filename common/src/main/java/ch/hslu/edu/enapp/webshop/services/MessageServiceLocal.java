@@ -6,5 +6,5 @@ import javax.ejb.Local;
 
 @Local
 public interface MessageServiceLocal {
-    void sendNewMessage(Purchase purchase);
+    String sendNewMessage(Purchase purchase);
 }

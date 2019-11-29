@@ -6,5 +6,5 @@ import javax.ejb.Local;
 
 @Local
 public interface OrderingServiceLocal {
-    void submitNewOrder(Purchase purchase);
+    boolean submitNewOrder(Purchase purchase);
 }

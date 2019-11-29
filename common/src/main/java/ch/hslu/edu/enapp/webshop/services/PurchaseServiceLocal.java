@@ -8,4 +8,6 @@ public interface PurchaseServiceLocal {
     void submitPurchaseItems(Purchase purchase);
 
     Purchase getPurchaseByCustomerName(String customerName);
+
+    void setCorrelationIdByPurchaseID(int purchaseID, String correlationID);
 }

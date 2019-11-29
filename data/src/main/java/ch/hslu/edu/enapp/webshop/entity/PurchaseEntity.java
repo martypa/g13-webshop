@@ -11,7 +11,8 @@ import java.util.Objects;
         @NamedQuery(name = "getNumberOfPurchases", query = "SELECT COUNT(p) FROM PurchaseEntity p"),
         @NamedQuery(name = "getAllPurchase", query = "SELECT p FROM PurchaseEntity p"),
         @NamedQuery(name = "getPurchaseById", query = "SELECT p FROM PurchaseEntity p WHERE p.id=:id"),
-        @NamedQuery(name = "getPurchaseByCustomerName", query = "SELECT p FROM PurchaseEntity p WHERE p.customer=:customer")
+        @NamedQuery(name = "getPurchaseByCustomerName", query = "SELECT p FROM PurchaseEntity p WHERE p.customer=:customer"),
+        @NamedQuery(name = "updateCorrIdByPurchaseID", query = "UPDATE PurchaseEntity p SET p.correlationId=:corrID WHERE p.id=:id")
 })
 @Table(name = "purchase", schema = "webshop", catalog = "")
 public class PurchaseEntity {
@@ -19,6 +20,7 @@ public class PurchaseEntity {
     private String customer;
     private Timestamp datetime;
     private String state;
+    private String correlationId;
     private double amount;
     private long payid;
     private CustomerEntity customerByCustomer;
@@ -82,6 +84,16 @@ public class PurchaseEntity {
 
     public void setPayid(long payid) {
         this.payid = payid;
+    }
+
+    @Basic
+    @Column(name = "correlationId", nullable = true, length = 255)
+    public String getCorrelationId() {
+        return correlationId;
+    }
+
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
     }
 
     @Override
