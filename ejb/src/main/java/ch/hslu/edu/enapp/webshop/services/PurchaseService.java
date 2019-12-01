@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,12 +74,17 @@ public class PurchaseService implements PurchaseServiceLocal {
     }
 
     @Override
-    public Purchase getPurchaseByCustomerName(String customerName) {
+    public List<Purchase> getPurchaseByCustomerName(String customerName) {
         final TypedQuery<PurchaseEntity> query = em.createNamedQuery("getPurchaseByCustomerName", PurchaseEntity.class)
                 .setParameter("customer", customerName);
-        final PurchaseEntity results = query.getResultList().get(0);
+        final List<PurchaseEntity> results = query.getResultList();
 
-        return getPurchaseByPurchaseEntity(results);
+        List<Purchase> list = new ArrayList<>();
+
+        for (PurchaseEntity i:results) {
+            list.add(getPurchaseByPurchaseEntity(i));
+        }
+        return list;
     }
 
     private Purchase getPurchaseByPurchaseEntity(PurchaseEntity p){
@@ -92,10 +98,10 @@ public class PurchaseService implements PurchaseServiceLocal {
                 p.getCustomer(),
                 p.getDatetime(),
                 p.getState(),
-                itemList
+                itemList,
+                p.getCorrelationId()
         );
     }
-
 
 
     @Override

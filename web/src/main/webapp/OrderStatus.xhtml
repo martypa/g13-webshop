@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/templates/template.xhtml">
+    <ui:define name="content">
+        <h:dataTable styleClass="table" id="OrderStatus" var="orderStatus"
+                     value="#{orderStatusJSF.getAllOrderStatus()}">
+            <f:facet name="header">
+                <h:outputText value="Status Order of #{userSessionJSF.username}"/>
+            </f:facet>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Purchase ID"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.purchaseId} "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Status"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.status} "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Postfinance Pay ID"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.postFinancePayId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Purchase Item Count"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.purchaseItemCount}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Purchase Total Cost"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.purchaseTotalCost}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Last Update"/>
+                </f:facet>
+                <h:outputText value="#{orderStatus.lastUpdate}"/>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

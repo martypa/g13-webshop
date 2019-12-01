@@ -14,6 +14,15 @@ public class Purchase {
     private LinkedList<PurchaseItem> purchaseItemList;
 
     public Purchase(String customerName, Timestamp datetime, String state, LinkedList<PurchaseItem> purchaseItemList) {
+        this.customerName = customerName;
+        this.datetime = datetime;
+        this.state = state;
+        this.purchaseItemList = purchaseItemList;
+        this.amount = calculateAmount(purchaseItemList);
+    }
+
+
+    public Purchase(int purchaseID, String customerName, Timestamp datetime, String state, LinkedList<PurchaseItem> purchaseItemList) {
         this.purchaseID = purchaseID;
         this.customerName = customerName;
         this.datetime = datetime;
@@ -22,12 +31,13 @@ public class Purchase {
         this.amount = calculateAmount(purchaseItemList);
     }
 
-    public Purchase(int purchaseID, String customerName, Timestamp datetime, String state, LinkedList<PurchaseItem> purchaseItemList) {
+    public Purchase(int purchaseID, String customerName, Timestamp datetime, String state, LinkedList<PurchaseItem> purchaseItemList, String correlationId) {
         this.purchaseID = purchaseID;
         this.customerName = customerName;
         this.datetime = datetime;
         this.state = state;
         this.purchaseItemList = purchaseItemList;
+        this.correlationId = correlationId;
         this.amount = calculateAmount(purchaseItemList);
     }
 
