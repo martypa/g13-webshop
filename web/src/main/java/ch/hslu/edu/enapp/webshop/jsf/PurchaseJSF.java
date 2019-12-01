@@ -29,6 +29,8 @@ public class PurchaseJSF{
     CustomerServiceLocal customerService;
 
     private boolean empty = true;
+    private String purchaseTitle = "";
+    private String purchaseText = "";
 
     public String submitPurchase() {
         if (caddy.getCaddyList().isEmpty()) {
@@ -56,13 +58,22 @@ public class PurchaseJSF{
                     }
                 }while (status == null || status.getDynNAVCustomerNo() == null);
                 customerService.updateDynNo(status.getDynNAVCustomerNo(), user.getUsername());
+                this.purchaseTitle = String.valueOf(purchase.getPurchaseID()) + ": Order Process Successful";
+                this.purchaseText = "Your order has been successfully submitted. The status of your order can be viewed under Settings.";
+            }else{
+                this.purchaseTitle = String.valueOf(purchase.getPurchaseID()) + ": Order Process Problem!";
+                this.purchaseText = "Problem with the order. Please try again.";
             }
-
-
             caddy.removeAllProducts();
-            return "/index";
+            return "/submitPurchase";
         }
     }
 
+    public String getPurchaseTitle() {
+        return purchaseTitle;
+    }
 
+    public String getPurchaseText() {
+        return purchaseText;
+    }
 }
