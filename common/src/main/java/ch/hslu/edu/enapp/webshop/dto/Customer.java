@@ -18,6 +18,14 @@ public class Customer {
         this.dynNavCustNo = dynNavCustNo;
     }
 
+    public Customer(String loginName, String firstName, String lastName, String address, String email) {
+        this.loginName = loginName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+    }
+
     public Customer() {
     }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/templates/template.xhtml">
+    <ui:define name="content">
+        <h2>
+            <h:outputFormat value="Register new Account" />
+        </h2>
+        <br />
+        <h:form id="register_form" acceptcharset="UTF-8" enctype="application/x-www-form-urlencoded;charset=UTF-8">
+            <h:panelGrid id="chatMessagesGrid" columns="2" bgcolor="#ffffff" cellspacing="5" frame="box">
+                <h:outputLabel value="Benutzername:" for="loginName" />
+                <h:inputText value="#{newAccountJSF.customer.loginName}" id="loginName" size="35" required="true" />
+                <h:outputLabel value="Password:" for="password" />
+                <h:inputSecret value="#{newAccountJSF.password}" id="password" size="35" required="true" />
+                <h:outputLabel value="First Name:" for="firstName" />
+                <h:inputText value="#{newAccountJSF.customer.firstName}" id="firstName" size="35" required="true" />
+                <h:outputLabel value="Familiy Name:" for="lastName" />
+                <h:inputText value="#{newAccountJSF.customer.lastName}" id="lastName" size="35" required="true" />
+                <h:outputLabel value="Adresse:" for="address" />
+                <h:inputText value="#{newAccountJSF.customer.address}" id="address" size="35" required="true" />
+                <h:outputLabel value="E-Mail:" for="email" />
+                <h:inputText value="#{newAccountJSF.customer.email}" id="email" size="35" required="true" />
+                <h:outputLabel value="" for="register" />
+                <h:commandButton id="register" action="#{newAccountJSF.submitNewAccount()}" value="register" />
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

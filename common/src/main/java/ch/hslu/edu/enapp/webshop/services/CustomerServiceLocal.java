@@ -11,4 +11,8 @@ public interface CustomerServiceLocal {
     Customer getCustomerbyDynNO(String dynNo);
 
     void updateDynNo(String dynNo, String loginName);
+
+    void addNewCustomer(Customer customer, String password);
+
+    void addUserRole(String userName);
 }

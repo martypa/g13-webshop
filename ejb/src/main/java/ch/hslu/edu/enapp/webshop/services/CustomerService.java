@@ -2,12 +2,16 @@ package ch.hslu.edu.enapp.webshop.services;
 
 import ch.hslu.edu.enapp.webshop.dto.Customer;
 import ch.hslu.edu.enapp.webshop.entity.CustomerEntity;
+import ch.hslu.edu.enapp.webshop.entity.CustomertoroleEntity;
+import ch.hslu.edu.enapp.webshop.entity.CustomertoroleEntityPK;
+import ch.hslu.edu.enapp.webshop.entity.RoleEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Stateless
 public class CustomerService implements CustomerServiceLocal {
@@ -23,10 +27,19 @@ public class CustomerService implements CustomerServiceLocal {
 
     @Override
     public Customer getCustomerByLoginName(String loginName){
+
         final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getCustomerByName", CustomerEntity.class)
                 .setParameter("name", loginName);
-        CustomerEntity customerEntity = customerQuery.getSingleResult();
-        return customerEntityToCustomer(customerEntity);
+        CustomerEntity customerEntity = null;
+        try {
+            customerEntity = customerQuery.getSingleResult();
+        }catch (Exception e){
+        }
+        if(customerEntity != null){
+            return customerEntityToCustomer(customerEntity);
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -43,6 +56,38 @@ public class CustomerService implements CustomerServiceLocal {
                 .setParameter("name", loginName)
                 .setParameter("dynNo", dynNo);
         customerQuery.executeUpdate();
+    }
+
+    public void addNewCustomer(Customer customer, String password){
+        CustomerEntity entity = new CustomerEntity();
+        entity.setAddress(customer.getAddress());
+        entity.setFirstname(customer.getFirstName());
+        entity.setEmail(customer.getEmail());
+        entity.setLastname(customer.getLastName());
+        entity.setName(customer.getLoginName());
+        entity.setPassword(password);
+        entity.setDynNavCustNo(null);
+        entity.setCustomertorolesByName(null);
+        entity.setPurchasesByName(null);
+        em.persist(entity);
+    }
+
+    @Override
+    public void addUserRole(String userName){
+        final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getCustomerByName", CustomerEntity.class)
+                .setParameter("name", userName);
+        CustomerEntity customerEntity = customerQuery.getSingleResult();
+
+        final TypedQuery<RoleEntity> roleQuery = em.createNamedQuery("getRole", RoleEntity.class);
+        List<RoleEntity> list = roleQuery.getResultList();
+
+
+        CustomertoroleEntity customertoroleEntity = new CustomertoroleEntity();
+        customertoroleEntity.setName(userName);
+        customertoroleEntity.setRole("user");
+        customertoroleEntity.setRoleByRole(list.get(0));
+        customertoroleEntity.setCustomerByName(customerEntity);
+        em.persist(customertoroleEntity);
     }
 
     private Customer customerEntityToCustomer(CustomerEntity entity){

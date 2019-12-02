@@ -4,7 +4,11 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getRole", query = "SELECT c FROM RoleEntity c"),
+})
 @Table(name = "role", schema = "webshop", catalog = "")
 public class RoleEntity {
     private String name;
