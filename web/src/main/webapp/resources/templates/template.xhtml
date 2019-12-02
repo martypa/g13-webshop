@@ -30,6 +30,9 @@
                     <li><h:graphicImage rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" name="images/status.svg" styleClass="icons"/>
                         <h:commandLink rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" action="/OrderStatus?faces-redirect=true" value="Order Status"/>
                     </li>
+                    <li><h:graphicImage rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" name="images/settings.svg" styleClass="icons"/>
+                        <h:commandLink rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" action="#{updateAccountJSF.update}" value="Settings"/>
+                    </li>
                     <li><h:graphicImage rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" name="images/logout.svg" styleClass="icons"/>
                         <h:commandLink rendered="#{userSessionJSF.username ne null and userSessionJSF.username ne ''}" action="#{userSessionJSF.logout}" value="Logout"/>
                     </li>

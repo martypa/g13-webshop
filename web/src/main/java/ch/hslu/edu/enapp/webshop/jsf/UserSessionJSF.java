@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class UserSessionJSF implements Serializable {
     private static final long serialVersionUID = 1492259801008765070L;
     private String username;
+
     public String getUsername() {
         if (null == username) {
             try {
@@ -29,6 +30,7 @@ public class UserSessionJSF implements Serializable {
         }
         return username;
     }
+
     public String logout() throws IOException {
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().invalidateSession();
