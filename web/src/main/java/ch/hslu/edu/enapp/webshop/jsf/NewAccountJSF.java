@@ -7,6 +7,7 @@ import ch.hslu.edu.enapp.webshop.services.CustomerServiceLocal;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -32,10 +33,16 @@ public class NewAccountJSF implements Serializable {
     }
 
     public String submitNewAccount() {
-        customerService.addNewCustomer(customer, encryptThisString(password));
-        customerService.addUserRole(customer.getLoginName());
-        this.customer = new Customer();
-        return "/login";
+        if(customerService.getCustomerByLoginName(customer.getLoginName()) == null) {
+            customerService.addNewCustomer(customer, encryptThisString(password));
+            customerService.addUserRole(customer.getLoginName());
+            this.customer = new Customer();
+            this.password = "";
+            return "/login";
+        }else{
+            showErrorMessage("The username is already used.");
+            return "/newAccount";
+        }
     }
 
     private String encryptThisString(String input) {
@@ -82,5 +89,10 @@ public class NewAccountJSF implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    private void showErrorMessage(String message) {
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, "");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
 }
