@@ -90,6 +90,33 @@ public class CustomerService implements CustomerServiceLocal {
         em.persist(customertoroleEntity);
     }
 
+
+
+    @Override
+    public void updateCustomer(Customer customer, String password){
+        final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getCustomerByName", CustomerEntity.class)
+                .setParameter("name", customer.getLoginName());
+        CustomerEntity customerEntity = customerQuery.getSingleResult();
+
+        customerEntity.setAddress(customer.getAddress());
+        customerEntity.setDynNavCustNo(customer.getDynNavCustNo());
+        customerEntity.setEmail(customer.getEmail());
+        customerEntity.setFirstname(customer.getFirstName());
+        customerEntity.setLastname(customer.getLastName());
+        customerEntity.setPassword(password);
+
+        final Query customerupdateQuery = em.createNamedQuery("updateCustomer")
+                .setParameter("firstname", customer.getFirstName())
+                .setParameter("password", password)
+                .setParameter("lastname", customer.getLastName())
+                .setParameter("address", customer.getAddress())
+                .setParameter("email", customer.getEmail())
+                .setParameter("dynNr", customer.getDynNavCustNo())
+                .setParameter("loginName", customer.getLoginName());
+        customerupdateQuery.executeUpdate();
+    }
+
+
     private Customer customerEntityToCustomer(CustomerEntity entity){
         return new Customer(
                 entity.getName(),

@@ -8,7 +8,14 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "getCustomerByName", query = "SELECT c FROM CustomerEntity c WHERE c.name=:name"),
         @NamedQuery(name = "getCustomerbyDynNo", query = "SELECT c FROM CustomerEntity c WHERE c.dynNavCustNo=:dynNo"),
-        @NamedQuery(name = "updateDynNoByName", query = "UPDATE CustomerEntity c SET c.dynNavCustNo=:dynNo WHERE c.name=:name")
+        @NamedQuery(name = "updateDynNoByName", query = "UPDATE CustomerEntity c SET c.dynNavCustNo=:dynNo WHERE c.name=:name"),
+        @NamedQuery(name = "updateCustomer", query = "UPDATE CustomerEntity  c SET " +
+                "c.password=:password, " +
+                "c.firstname=:firstname, " +
+                "c.lastname=:lastname," +
+                "c.address=:address," +
+                "c.email=:email," +
+                "c.dynNavCustNo=:dynNr WHERE c.name=:loginName")
 })
 @Table(name = "customer", schema = "webshop", catalog = "")
 public class CustomerEntity {

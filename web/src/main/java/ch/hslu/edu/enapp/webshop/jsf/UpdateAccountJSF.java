@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class UpdateAccountJSF implements Serializable {
 
 
@@ -28,8 +28,8 @@ public class UpdateAccountJSF implements Serializable {
     private Customer customer;
     private String password;
 
-    public UpdateAccountJSF() {
 
+    public UpdateAccountJSF() {
     }
 
     public String update(){
@@ -40,8 +40,14 @@ public class UpdateAccountJSF implements Serializable {
         return "/settings";
     }
 
-    public String updateAccount() {
-        return null;
+    public void updateAccount() {
+        try {
+            customerService.updateCustomer(customer, encryptThisString(password));
+        }catch (Exception e){
+            showErrorMessage("Changes could not be accepted.");
+        }
+
+        showOKMessage("Changes were saved successfully.");
     }
 
     private String encryptThisString(String input) {
@@ -94,4 +100,11 @@ public class UpdateAccountJSF implements Serializable {
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, "");
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
+
+
+    private void showOKMessage(String message) {
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, message, "");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+    }
+
 }

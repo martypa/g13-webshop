@@ -15,4 +15,6 @@ public interface CustomerServiceLocal {
     void addNewCustomer(Customer customer, String password);
 
     void addUserRole(String userName);
+
+    void updateCustomer(Customer customer, String password);
 }
