@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -91,7 +92,6 @@ public class CustomerService implements CustomerServiceLocal {
     }
 
 
-
     @Override
     public void updateCustomer(Customer customer, String password){
         final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getCustomerByName", CustomerEntity.class)
@@ -114,6 +114,20 @@ public class CustomerService implements CustomerServiceLocal {
                 .setParameter("dynNr", customer.getDynNavCustNo())
                 .setParameter("loginName", customer.getLoginName());
         customerupdateQuery.executeUpdate();
+    }
+
+    @Override
+    public List<Customer> getAllCustomer(){
+        final TypedQuery<CustomerEntity> customerQuery = em.createNamedQuery("getAllCustomers", CustomerEntity.class);
+        List<CustomerEntity> customerEntityList = customerQuery.getResultList();
+
+        List<Customer> customersList = new ArrayList<>();
+
+        for (CustomerEntity e:customerEntityList) {
+            customersList.add(customerEntityToCustomer(e));
+        }
+
+        return customersList;
     }
 
 

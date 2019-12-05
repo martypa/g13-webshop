@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/templates/template.xhtml">
+    <ui:define name="content">
+        <h2>
+            <h:outputFormat value="Admin Area" />
+        </h2>
+        <h:dataTable styleClass="table" id="allCustomers" var="customers"
+                     value="#{customersJSF.getAllCustomers()}">
+            <f:facet name="header">
+                <h:outputText value="All registered Customers"/>
+            </f:facet>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Login Name"/>
+                </f:facet>
+                <h:outputText value="#{customers.loginName} "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="First Name"/>
+                </f:facet>
+                <h:outputText value="#{customers.firstName} "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="LastName"/>
+                </f:facet>
+                <h:outputText value="#{customers.lastName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="address"/>
+                </f:facet>
+                <h:outputText value="#{customers.address}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{customers.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="DynNavCustNo"/>
+                </f:facet>
+                <h:outputText value="#{customers.dynNavCustNo}"/>
+            </h:column>
+        </h:dataTable>
+
+        <br />
+        <h:form id="customer_form" acceptcharset="UTF-8" enctype="application/x-www-form-urlencoded;charset=UTF-8">
+            <h:panelGrid id="chatMessagesGrid" columns="2" bgcolor="#ffffff" cellspacing="5" frame="box">
+                <h:outputLabel value="Login Name:" for="loginName" />
+                <h:inputSecret value="#{updateAccountAdminJSF.customer.loginName}" id="loginName" size="35" required="true" />
+                <h:outputLabel value="Password:" for="password" />
+                <h:inputSecret value="#{updateAccountAdminJSF.password}" id="password" size="35" required="true" />
+                <h:outputLabel value="First Name:" for="firstName" />
+                <h:inputText value="#{updateAccountAdminJSF.customer.firstName}" id="firstName" size="35" required="true" />
+                <h:outputLabel value="DynNavCustNo:" for="dynNavCustNo" />
+                <h:inputText value="#{updateAccountAdminJSF.customer.dynNavCustNo}" id="dynNavCustNo" size="35" required="true" />
+                <h:outputLabel value="Family Name:" for="lastName" />
+                <h:inputText value="#{updateAccountAdminJSF.customer.lastName}" id="lastName" size="35" required="true" />
+                <h:outputLabel value="Adresse:" for="address" />
+                <h:inputText value="#{updateAccountAdminJSF.customer.address}" id="address" size="35" required="true" />
+                <h:outputLabel value="E-Mail:" for="email" />
+                <h:inputText value="#{updateAccountAdminJSF.customer.email}" id="email" size="35" required="true" />
+                <h:outputLabel value="" for="register" />
+                <h:commandButton id="register" action="#{updateAccountAdminJSF.updateAccount()}" value="update" />
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

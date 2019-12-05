@@ -3,6 +3,7 @@ package ch.hslu.edu.enapp.webshop.services;
 import ch.hslu.edu.enapp.webshop.dto.Customer;
 
 import javax.ejb.Local;
+import java.util.List;
 
 @Local
 public interface CustomerServiceLocal {
@@ -17,4 +18,6 @@ public interface CustomerServiceLocal {
     void addUserRole(String userName);
 
     void updateCustomer(Customer customer, String password);
+
+    List<Customer> getAllCustomer();
 }

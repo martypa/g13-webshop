@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getCustomerByName", query = "SELECT c FROM CustomerEntity c WHERE c.name=:name"),
+        @NamedQuery(name = "getAllCustomers", query = "SELECT c FROM CustomerEntity c"),
         @NamedQuery(name = "getCustomerbyDynNo", query = "SELECT c FROM CustomerEntity c WHERE c.dynNavCustNo=:dynNo"),
         @NamedQuery(name = "updateDynNoByName", query = "UPDATE CustomerEntity c SET c.dynNavCustNo=:dynNo WHERE c.name=:name"),
         @NamedQuery(name = "updateCustomer", query = "UPDATE CustomerEntity  c SET " +
