@@ -130,6 +130,16 @@ public class CustomerService implements CustomerServiceLocal {
         return customersList;
     }
 
+    @Override
+    public String getRoleByCustomerName(String customerLoginName){
+        final TypedQuery<CustomertoroleEntity> customerQuery = em.createNamedQuery("getRoleByCustomerName", CustomertoroleEntity.class)
+                .setParameter("name", customerLoginName);
+        CustomertoroleEntity roleEntity = customerQuery.getSingleResult();
+
+        return roleEntity.getRole();
+
+    }
+
 
     private Customer customerEntityToCustomer(CustomerEntity entity){
         return new Customer(

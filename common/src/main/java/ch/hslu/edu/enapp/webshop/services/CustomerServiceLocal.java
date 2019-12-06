@@ -20,4 +20,6 @@ public interface CustomerServiceLocal {
     void updateCustomer(Customer customer, String password);
 
     List<Customer> getAllCustomer();
+
+    String getRoleByCustomerName(String customerLoginName);
 }
